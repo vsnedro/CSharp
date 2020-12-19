@@ -26,11 +26,24 @@ namespace DataStructures.LinkedList
     public class LinkedList<T> : IEnumerable<T>
     {
         private Node<T> first = null;
-        private Node<T> last = null;
+        private Node<T> last  = null;
         private int count = 0;
 
         /// <summary>
-        /// Add an item to the end of the list
+        /// Gets the number of elements contained in the list.
+        /// </summary>
+        public int Count { get => count; }
+        /// <summary>
+        /// Gets the first element in the list.
+        /// </summary>
+        public Node<T> First { get => first; }
+        /// <summary>
+        /// Gets the last element in the list.
+        /// </summary>
+        public Node<T> Last { get => last; }
+
+        /// <summary>
+        /// Adds an element to the end of the list.
         /// </summary>
         public Node<T> Add(T data)
         {
@@ -52,70 +65,158 @@ namespace DataStructures.LinkedList
         }
 
         /// <summary>
-        /// Add an item at specified index
-        /// </summary>
-        public Node<T> Insert(int index, T data)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Remove item from list
-        /// </summary>
-        public Node<T> Remove(T data)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Get the first item in the list
-        /// </summary>
-        public Node<T> First()
-        {
-            return first;
-        }
-
-        /// <summary>
-        /// Get the last item in the list
-        /// </summary>
-        public Node<T> Last()
-        {
-            return last;
-        }
-
-        /// <summary>
-        /// Check if an item is in the list
-        /// </summary>
-        public bool Contains(T data)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Number of items in the list
-        /// </summary>
-        public int Count()
-        {
-            return count;
-        }
-
-        /// <summary>
-        /// Clear list
+        /// Removes all elements from the list.
         /// </summary>
         public void Clear()
         {
-            throw new NotImplementedException();
+            first = null;
+            last  = null;
+            count = 0;
         }
 
-        #region IEnumerable
-        public IEnumerator<T> GetEnumerator()
+        /// <summary>
+        /// Determines whether an element is in the list.
+        /// </summary>
+        public bool Contains(T data)
         {
-            throw new NotImplementedException();
+            var curr = first;
+
+            while (curr != null)
+            {
+                if (curr.Data.Equals(data))
+                {
+                    return true;
+                }
+                curr = curr.Next;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Extracts and returns the first occurrence of a specific element from the list.
+        /// </summary>
+        /// <returns>
+        /// Element if it is successfully extracted; otherwise, null.
+        /// This method also returns null if item was not found in the list.
+        /// </returns>
+        public Node<T> Extract(T data)
+        {
+            Node<T> curr = first;
+            Node<T> prev = null;
+
+            while (curr != null)
+            {
+                if (curr.Data.Equals(data))
+                {
+                    if (curr == first)
+                    {
+                        first = curr.Next;
+                    }
+                    else
+                    {
+                        prev.Next = curr.Next;
+                    }
+                    if (curr == last)
+                    {
+                        last = prev;
+                    }
+                    count--;
+                    return curr;
+                }
+                prev = curr;
+                curr = curr.Next;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Searches for the specified object and returns the zero-based index of the first occurrence within the entire list.
+        /// </summary>
+        /// <returns>
+        /// The zero-based index of the first occurrence of item within the entire list, if found; otherwise, -1.
+        /// </returns>  
+        public int IndexOf(T data)
+        {
+            var curr  = first;
+            var index = 0;
+
+            while (curr != null)
+            {
+                if (curr.Data.Equals(data))
+                {
+                    return index;
+                }
+                curr = curr.Next;
+                index++;
+            }
+            return -1;
+        }
+
+        /// <summary>
+        /// Inserts an element into the list at the specified index.
+        /// </summary>
+        public Node<T> Insert(uint index, T data)
+        {
+            if (index == 0)
+            {
+                var node = new Node<T>(data)
+                {
+                    Next = first
+                };
+                first = node;
+                count++;
+                return node;
+            }
+            if (index == count)
+            {
+                return Add(data);
+            }
+            if (index < count)
+            {
+                var prev = first;
+                for (int i = 0; i < index - 1; i++)
+                {
+                    prev = prev.Next;
+                }
+                var node = new Node<T>(data)
+                {
+                    Next = prev.Next
+                };
+                prev.Next = node;
+                count++;
+                return node;
+            }
+
+            throw new IndexOutOfRangeException();
+        }
+
+        /// <summary>
+        /// Removes the first occurrence of a specific element from the list.
+        /// </summary>
+        /// <returns>
+        /// true if item is successfully removed; otherwise, false.
+        /// This method also returns false if item was not found in the list.
+        /// </returns>
+        public bool Remove(T data)
+        {
+            return Extract(data) != null;
+        }
+
+        #region IEnumerable<T>
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            var curr = first;
+
+            while (curr != null)
+            {
+                yield return curr.Data;
+                curr = curr.Next;
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return ((IEnumerable)this).GetEnumerator();
         }
         #endregion
     }
