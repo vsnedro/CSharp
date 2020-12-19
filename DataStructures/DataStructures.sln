@@ -8,7 +8,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStructures", "DataStruc
 		{216C90E4-3260-4B8F-A2C0-9894C2D41176} = {216C90E4-3260-4B8F-A2C0-9894C2D41176}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedList", "LinkedList\LinkedList.csproj", "{216C90E4-3260-4B8F-A2C0-9894C2D41176}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkedList", "LinkedList\LinkedList.csproj", "{216C90E4-3260-4B8F-A2C0-9894C2D41176}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkedList.Tests", "LinkedList.Tests\LinkedList.Tests.csproj", "{F8578880-65D4-4E27-A415-16A1E9EA72D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +26,10 @@ Global
 		{216C90E4-3260-4B8F-A2C0-9894C2D41176}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{216C90E4-3260-4B8F-A2C0-9894C2D41176}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{216C90E4-3260-4B8F-A2C0-9894C2D41176}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8578880-65D4-4E27-A415-16A1E9EA72D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8578880-65D4-4E27-A415-16A1E9EA72D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8578880-65D4-4E27-A415-16A1E9EA72D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8578880-65D4-4E27-A415-16A1E9EA72D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
