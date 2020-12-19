@@ -12,24 +12,5 @@ namespace DataStructures.Tests.LinkedList
 
             Assert.Null(result);
         }
-
-        [Fact]
-        public void First_NonEmptyList_ReturnsNotNull()
-        {
-            _list.Add("");
-            var result = _list.First;
-
-            Assert.NotNull(result);
-        }
-
-        [Fact]
-        public void First_NonEmptyList_ReturnsData()
-        {
-            var data = "1";
-            _list.Add(data);
-            var result = _list.First;
-
-            Assert.Equal(data, result?.Data);
-        }
     }
 }

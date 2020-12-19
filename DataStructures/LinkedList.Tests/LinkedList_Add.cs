@@ -6,75 +6,58 @@ namespace DataStructures.Tests.LinkedList
     public class LinkedList_Add : TestLinkedList
     {
         [Fact]
-        public void Add_SingleValue_ReturnsNode()
+        public void Add_Value1_ReturnsNotNull()
         {
-            var node = _list.Add("");
-
-            Assert.NotNull(node);
-        }
-
-        [Fact]
-        public void Add_SingleValue_ReturnesData()
-        {
-            var expected = "value";
-            var node = _list.Add(expected);
-            var actual = node?.Data;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void Add_SingleValue_CountReturnes1()
-        {
-            _list.Add("");
-
-            Assert.Equal(1, _list.Count);
-        }
-
-        [Fact]
-        public void Add_SingleValue_FirstReturnsNotNull()
-        {
-            _list.Add("");
-            var result = _list.First;
+            var result = _list.Add("1");
 
             Assert.NotNull(result);
         }
 
         [Fact]
-        public void Add_SingleValue_FirstReturnsData()
+        public void Add_Value1_ReturnesData0()
         {
-            var data = "1";
-            _list.Add(data);
-            var result = _list.First;
+            var result = _list.Add("1");
+            var actual = result?.Data;
 
-            Assert.Equal(data, result?.Data);
+            Assert.Equal("1", actual);
         }
 
-        [Fact]
-        public void Add_SingleValue_LastReturnsNotNull()
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
+        [InlineData(9)]
+        [InlineData(10)]
+        public void Add_ValuesFrom1To10_CountReturnsLength(int length)
         {
-            _list.Add("");
-            var result = _list.Last;
+            for (int i = 1; i <= length; i++)
+            {
+                _list.Add(i.ToString());
+            }
+            var actual = _list.Count;
 
-            Assert.NotNull(result);
+            Assert.Equal(length, actual);
         }
 
-        [Fact]
-        public void Add_SingleValue_LastReturnsData()
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
+        [InlineData(9)]
+        [InlineData(10)]
+        public void Add_ValuesFrom1To10_FirstReturnsNotNull(int length)
         {
-            var data = "1";
-            _list.Add(data);
-            var result = _list.Last;
-
-            Assert.Equal(data, result?.Data);
-        }
-
-        [Fact]
-        public void Add_SomeValues_FirstReturnsNotNull()
-        {
-            var first = 1;
-            var length = 10;
-            for (int i = first; i <= length; i++)
+            for (int i = 1; i <= length; i++)
             {
                 _list.Add(i.ToString());
             }
@@ -83,26 +66,43 @@ namespace DataStructures.Tests.LinkedList
             Assert.NotNull(result);
         }
 
-        [Fact]
-        public void Add_SomeValues_FirstReturnsData()
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
+        [InlineData(9)]
+        [InlineData(10)]
+        public void Add_ValuesFrom1To10_FirstReturnsData1(int length)
         {
-            var first = 1;
-            var length = 10;
-            for (int i = first; i <= length; i++)
+            for (int i = 1; i <= length; i++)
             {
                 _list.Add(i.ToString());
             }
             var result = _list.First;
+            var actual = result?.Data;
 
-            Assert.Equal(first.ToString(), result?.Data);
+            Assert.Equal("1", actual);
         }
 
-        [Fact]
-        public void Add_SomeValues_LastReturnsNotNull()
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
+        [InlineData(9)]
+        [InlineData(10)]
+        public void Add_ValuesFrom1To10_LastReturnsNotNull(int length)
         {
-            var first = 1;
-            var length = 10;
-            for (int i = first; i <= length; i++)
+            for (int i = 1; i <= length; i++)
             {
                 _list.Add(i.ToString());
             }
@@ -111,18 +111,27 @@ namespace DataStructures.Tests.LinkedList
             Assert.NotNull(result);
         }
 
-        [Fact]
-        public void Add_SomeValues_LastReturnsData()
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
+        [InlineData(9)]
+        [InlineData(10)]
+        public void Add_ValuesFrom1To10_LastReturnsData(int length)
         {
-            var first = 1;
-            var length = 10;
-            for (int i = first; i <= length; i++)
+            for (int i = 1; i <= length; i++)
             {
                 _list.Add(i.ToString());
             }
             var result = _list.Last;
+            var actual = result?.Data;
 
-            Assert.Equal(length.ToString(), result?.Data);
+            Assert.Equal(length.ToString(), actual);
         }
     }
 }
