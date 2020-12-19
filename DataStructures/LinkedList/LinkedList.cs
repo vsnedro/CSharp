@@ -204,6 +204,23 @@ namespace DataStructures.LinkedList
         }
 
         /// <summary>
+        /// Reverses the order of the elements in the entire list.
+        /// </summary>
+        public void Reverse()
+        {
+            Node<T> prev = null, curr = first, next;
+            while (curr != null)
+            {
+                next = curr.Next;
+                curr.Next = prev;
+                prev = curr;
+                curr = next;
+            }
+            last  = first;
+            first = prev;
+        }
+
+        /// <summary>
         /// Copies the elements of the list to a new array.
         /// </summary>
         /// <returns>
