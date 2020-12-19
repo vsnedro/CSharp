@@ -23,7 +23,7 @@ namespace DataStructures.LinkedList
     /// Linked list
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class LinkedList<T> : IEnumerable<T>
+    public class LinkedList<T> : IEnumerable<T>, IEnumerable
     {
         private Node<T> first = null;
         private Node<T> last  = null;
@@ -203,11 +203,30 @@ namespace DataStructures.LinkedList
             return Extract(data) != null;
         }
 
+        /// <summary>
+        /// Copies the elements of the list to a new array.
+        /// </summary>
+        /// <returns>
+        /// An array containing copies of the elements of the list.
+        /// </returns>
+        public T[] ToArray()
+        {
+            T[] result = new T[count];
+            var curr = first;
+            var index = 0;
+            while (curr != null)
+            {
+                result[index] = curr.Data;
+                index++;
+                curr = curr.Next;
+            }
+            return result;
+        }
+
         #region IEnumerable<T>
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
             var curr = first;
-
             while (curr != null)
             {
                 yield return curr.Data;
