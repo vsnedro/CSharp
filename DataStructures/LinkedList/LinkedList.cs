@@ -155,7 +155,7 @@ namespace DataStructures.LinkedList
         /// <summary>
         /// Inserts an element into the list at the specified index.
         /// </summary>
-        public Node<T> Insert(uint index, T data)
+        public Node<T> Insert(int index, T data)
         {
             if (index == 0)
             {
@@ -164,6 +164,7 @@ namespace DataStructures.LinkedList
                     Next = first
                 };
                 first = node;
+                last ??= node;  // if list was empty
                 count++;
                 return node;
             }
@@ -171,7 +172,7 @@ namespace DataStructures.LinkedList
             {
                 return Add(data);
             }
-            if (index < count)
+            if (index > 0 && index < count)
             {
                 var prev = first;
                 for (int i = 0; i < index - 1; i++)
