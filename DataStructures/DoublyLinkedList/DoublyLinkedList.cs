@@ -8,13 +8,13 @@ namespace DataStructures.DoublyLinkedList
     /// Node in a doubly linked list
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Node<T>
+    public class DoublyNode<T>
     {
         public T Data { get; }
-        public Node<T> Prev { get; set; }
-        public Node<T> Next { get; set; }
+        public DoublyNode<T> Prev { get; set; }
+        public DoublyNode<T> Next { get; set; }
 
-        public Node(T data)
+        public DoublyNode(T data)
         {
             Data = data;
         }
@@ -26,8 +26,8 @@ namespace DataStructures.DoublyLinkedList
     /// <typeparam name="T"></typeparam>
     public class DoublyLinkedList<T> : IEnumerable<T>
     {
-        private Node<T> first = null;
-        private Node<T> last = null;
+        private DoublyNode<T> first = null;
+        private DoublyNode<T> last = null;
         private int count = 0;
 
         /// <summary>
@@ -37,18 +37,18 @@ namespace DataStructures.DoublyLinkedList
         /// <summary>
         /// Gets the first element in the list.
         /// </summary>
-        public Node<T> First { get => first; }
+        public DoublyNode<T> First { get => first; }
         /// <summary>
         /// Gets the last element in the list.
         /// </summary>
-        public Node<T> Last { get => last; }
+        public DoublyNode<T> Last { get => last; }
 
         /// <summary>
         /// Adds an element to the end of the list.
         /// </summary>
         public void Add(T data)
         {
-            var node = new Node<T>(data);
+            var node = new DoublyNode<T>(data);
 
             // empty list
             if (first == null)
@@ -70,7 +70,7 @@ namespace DataStructures.DoublyLinkedList
         /// </summary>
         public void AddFirst(T data)
         {
-            var node = new Node<T>(data);
+            var node = new DoublyNode<T>(data);
 
             // empty list
             if (first == null)
@@ -124,7 +124,7 @@ namespace DataStructures.DoublyLinkedList
         /// </returns>
         public bool Remove(T data)
         {
-            Node<T> prev = null, curr = first, next;
+            DoublyNode<T> prev = null, curr = first, next;
 
             while (curr != null)
             {
@@ -161,7 +161,7 @@ namespace DataStructures.DoublyLinkedList
         /// </summary>
         public void Reverse()
         {
-            Node<T> prev = null, curr = first, next;
+            DoublyNode<T> prev = null, curr = first, next;
 
             while (curr != null)
             {
