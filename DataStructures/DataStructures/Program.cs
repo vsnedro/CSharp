@@ -1,4 +1,6 @@
 ﻿using System;
+using DataStructures.LinkedList;
+using DataStructures.DoublyLinkedList;
 
 namespace DataStructures
 {
