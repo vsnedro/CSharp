@@ -23,7 +23,7 @@ namespace DataStructures.LinkedList
     /// Linked list
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class LinkedList<T> : IEnumerable<T>, IEnumerable
+    public class LinkedList<T> : IEnumerable<T>
     {
         private Node<T> first = null;
         private Node<T> last  = null;
@@ -45,7 +45,7 @@ namespace DataStructures.LinkedList
         /// <summary>
         /// Adds an element to the end of the list.
         /// </summary>
-        public Node<T> Add(T data)
+        public void Add(T data)
         {
             var node = new Node<T>(data);
 
@@ -61,7 +61,27 @@ namespace DataStructures.LinkedList
             }
             last = node;
             count++;
-            return node;
+        }
+
+        /// <summary>
+        /// Adds an element to the beginning of the list.
+        /// </summary>
+        public void AddFirst(T data)
+        {
+            var node = new Node<T>(data);
+
+            // empty list
+            if (first == null)
+            {
+                last = node;
+            }
+            // non-empty list
+            else
+            {
+                node.Next = first;
+            }
+            first = node;
+            count++;
         }
 
         /// <summary>
@@ -93,43 +113,6 @@ namespace DataStructures.LinkedList
         }
 
         /// <summary>
-        /// Extracts and returns the first occurrence of a specific element from the list.
-        /// </summary>
-        /// <returns>
-        /// Element if it is successfully extracted; otherwise, null.
-        /// This method also returns null if item was not found in the list.
-        /// </returns>
-        public Node<T> Extract(T data)
-        {
-            Node<T> curr = first;
-            Node<T> prev = null;
-
-            while (curr != null)
-            {
-                if (curr.Data.Equals(data))
-                {
-                    if (curr == first)
-                    {
-                        first = curr.Next;
-                    }
-                    else
-                    {
-                        prev.Next = curr.Next;
-                    }
-                    if (curr == last)
-                    {
-                        last = prev;
-                    }
-                    count--;
-                    return curr;
-                }
-                prev = curr;
-                curr = curr.Next;
-            }
-            return null;
-        }
-
-        /// <summary>
         /// Searches for the specified object and returns the zero-based index of the first occurrence within the entire list.
         /// </summary>
         /// <returns>
@@ -155,7 +138,7 @@ namespace DataStructures.LinkedList
         /// <summary>
         /// Inserts an element into the list at the specified index.
         /// </summary>
-        public Node<T> Insert(int index, T data)
+        public void Insert(int index, T data)
         {
             if (index == 0)
             {
@@ -166,12 +149,13 @@ namespace DataStructures.LinkedList
                 first = node;
                 last ??= node;  // if list was empty
                 count++;
-                return node;
             }
+            else
             if (index == count)
             {
-                return Add(data);
+                Add(data);
             }
+            else
             if (index > 0 && index < count)
             {
                 var prev = first;
@@ -185,10 +169,11 @@ namespace DataStructures.LinkedList
                 };
                 prev.Next = node;
                 count++;
-                return node;
             }
-
-            throw new IndexOutOfRangeException();
+            else 
+            {
+                throw new IndexOutOfRangeException();
+            }
         }
 
         /// <summary>
@@ -200,7 +185,31 @@ namespace DataStructures.LinkedList
         /// </returns>
         public bool Remove(T data)
         {
-            return Extract(data) != null;
+            Node<T> prev = null, curr = first;
+
+            while (curr != null)
+            {
+                if (curr.Data.Equals(data))
+                {
+                    if (curr == first)
+                    {
+                        first = curr.Next;
+                    }
+                    else
+                    {
+                        prev.Next = curr.Next;
+                    }
+                    if (curr == last)
+                    {
+                        last = prev;
+                    }
+                    count--;
+                    return true;
+                }
+                prev = curr;
+                curr = curr.Next;
+            }
+            return false;
         }
 
         /// <summary>
@@ -209,6 +218,7 @@ namespace DataStructures.LinkedList
         public void Reverse()
         {
             Node<T> prev = null, curr = first, next;
+
             while (curr != null)
             {
                 next = curr.Next;
