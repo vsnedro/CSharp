@@ -6,24 +6,7 @@ namespace DataStructures.Tests.LinkedList
     public class LinkedList_Insert : TestLinkedList
     {
         [Fact]
-        public void Insert_Value1_ReturnsNotNull()
-        {
-            var result = _list.Insert(0, "1");
-
-            Assert.NotNull(result);
-        }
-
-        [Fact]
-        public void Insert_Value1_ReturnesData1()
-        {
-            var result = _list.Insert(0, "1");
-            var actual = result?.Data;
-
-            Assert.Equal("1", actual);
-        }
-
-        [Fact]
-        public void Insert_Value1_CountReturnes1()
+        public void Insert_Value1_CountReturns1()
         {
             _list.Insert(0, "1");
             var actual = _list.Count;

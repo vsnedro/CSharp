@@ -8,18 +8,18 @@ namespace DataStructures.Tests.LinkedList
         [Fact]
         public void Count_EmptyList_Returns0()
         {
-            var result = _list.Count;
+            var actual = _list.Count;
 
-            Assert.Equal(0, result);
+            Assert.Equal(0, actual);
         }
 
         [Fact]
         public void Count_AddItemToEmptyList_Returns1()
         {
             _list.Add("");
-            var result = _list.Count;
+            var actual = _list.Count;
 
-            Assert.Equal(1, result);
+            Assert.Equal(1, actual);
         }
     }
 }

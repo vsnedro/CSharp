@@ -6,7 +6,7 @@ namespace DataStructures.Tests.LinkedList
     public class LinkedList_Reverse : TestLinkedList
     {
         [Fact]
-        public void Reverse_EmptyList_CountReturnes0()
+        public void Reverse_EmptyList_CountReturns0()
         {
             _list.Reverse();
             var actual = _list.Count;
@@ -15,7 +15,7 @@ namespace DataStructures.Tests.LinkedList
         }
 
         [Fact]
-        public void Reverse_EmptyList_FirstReturnesNull()
+        public void Reverse_EmptyList_FirstReturnsNull()
         {
             _list.Reverse();
             var result = _list.First;
@@ -24,7 +24,7 @@ namespace DataStructures.Tests.LinkedList
         }
 
         [Fact]
-        public void Reverse_EmptyList_LastReturnesNull()
+        public void Reverse_EmptyList_LastReturnsNull()
         {
             _list.Reverse();
             var result = _list.Last;
@@ -43,7 +43,7 @@ namespace DataStructures.Tests.LinkedList
         [InlineData(8)]
         [InlineData(9)]
         [InlineData(10)]
-        public void Reverse_ListWithValuesFrom1To10_CountReturnesLength(int length)
+        public void Reverse_ListWithValuesFrom1To10_CountReturnsLength(int length)
         {
             for (int i = 1; i <= length; i++)
             {
@@ -66,7 +66,7 @@ namespace DataStructures.Tests.LinkedList
         [InlineData(8)]
         [InlineData(9)]
         [InlineData(10)]
-        public void Reverse_ListWithValuesFrom1To10_FirstReturnesNotNull(int length)
+        public void Reverse_ListWithValuesFrom1To10_FirstReturnsNotNull(int length)
         {
             for (int i = 1; i <= length; i++)
             {
@@ -89,7 +89,7 @@ namespace DataStructures.Tests.LinkedList
         [InlineData(8)]
         [InlineData(9)]
         [InlineData(10)]
-        public void Reverse_ListWithValuesFrom1To10_FirstReturnesData(int length)
+        public void Reverse_ListWithValuesFrom1To10_FirstReturnsLength(int length)
         {
             for (int i = 1; i <= length; i++)
             {
@@ -113,7 +113,7 @@ namespace DataStructures.Tests.LinkedList
         [InlineData(8)]
         [InlineData(9)]
         [InlineData(10)]
-        public void Reverse_ListWithValuesFrom1To10_LastReturnesNotNull(int length)
+        public void Reverse_ListWithValuesFrom1To10_LastReturnsNotNull(int length)
         {
             for (int i = 1; i <= length; i++)
             {
@@ -136,7 +136,7 @@ namespace DataStructures.Tests.LinkedList
         [InlineData(8)]
         [InlineData(9)]
         [InlineData(10)]
-        public void Reverse_ListWithValuesFrom1To10_LastReturnesData1(int length)
+        public void Reverse_ListWithValuesFrom1To10_LastReturns1(int length)
         {
             for (int i = 1; i <= length; i++)
             {
@@ -147,6 +147,34 @@ namespace DataStructures.Tests.LinkedList
             var actual = result?.Data;
 
             Assert.Equal("1", actual);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
+        [InlineData(9)]
+        [InlineData(10)]
+        public void Reverse_ListWithValuesFrom1To10_EnumeratorReturnsLength(int length)
+        {
+            for (int i = 1; i <= length; i++)
+            {
+                _list.Add(i.ToString());
+            }
+            _list.Reverse();
+
+            int actual = 0;
+            foreach (var item in _list)
+            {
+                actual++;
+            }
+
+            Assert.Equal(length, actual);
         }
     }
 }

@@ -71,10 +71,20 @@ namespace DataStructures.Tests.LinkedList
             Assert.Null(actual);
         }
 
-        [Fact]
-        public void Remove_ListWithValuesFrom1To10_Remove1ReturnsTrue()
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
+        [InlineData(9)]
+        [InlineData(10)]
+        public void Remove_ListWithValuesFrom1To10_RemoveFirstValueReturnsTrue(int length)
         {
-            for (int i = 1; i <= 10; i++)
+            for (int i = 1; i <= length; i++)
             {
                 _list.Add(i.ToString());
             }
@@ -83,98 +93,128 @@ namespace DataStructures.Tests.LinkedList
             Assert.True(result);
         }
 
-        [Fact]
-        public void Remove_ListWithValuesFrom1To10_Remove1CountReturns9()
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
+        [InlineData(9)]
+        [InlineData(10)]
+        public void Remove_ListWithValuesFrom1To10_RemoveLastValueReturnsTrue(int length)
         {
-            for (int i = 1; i <= 10; i++)
+            for (int i = 1; i <= length; i++)
             {
                 _list.Add(i.ToString());
             }
-            _list.Remove("1");
-            var actual = _list.Count;
-
-            Assert.Equal(9, actual);
-        }
-
-        [Fact]
-        public void Remove_ListWithValuesFrom1To10_Remove1FirstReturns2()
-        {
-            for (int i = 1; i <= 10; i++)
-            {
-                _list.Add(i.ToString());
-            }
-            _list.Remove("1");
-            var result = _list.First;
-            var actual = result?.Data;
-
-            Assert.Equal("2", actual);
-        }
-
-        [Fact]
-        public void Remove_ListWithValuesFrom1To10_Remove1LastReturns10()
-        {
-            for (int i = 1; i <= 10; i++)
-            {
-                _list.Add(i.ToString());
-            }
-            _list.Remove("1");
-            var result = _list.Last;
-            var actual = result?.Data;
-
-            Assert.Equal("10", actual);
-        }
-
-        [Fact]
-        public void Remove_ListWithValuesFrom1To10_Remove10ReturnsTrue()
-        {
-            for (int i = 1; i <= 10; i++)
-            {
-                _list.Add(i.ToString());
-            }
-            var result = _list.Remove("10");
+            var result = _list.Remove(length.ToString());
 
             Assert.True(result);
         }
 
-        [Fact]
-        public void Remove_ListWithValuesFrom1To10_Remove10CountReturns9()
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
+        [InlineData(9)]
+        [InlineData(10)]
+        public void Remove_ListWithValuesFrom1To10_RemoveFirstValueCountReturnsLength(int length)
         {
-            for (int i = 1; i <= 10; i++)
+            for (int i = 1; i <= length; i++)
             {
                 _list.Add(i.ToString());
             }
-            _list.Remove("10");
+            _list.Remove("1");
             var actual = _list.Count;
 
-            Assert.Equal(9, actual);
+            Assert.Equal(length - 1, actual);
         }
 
-        [Fact]
-        public void Remove_ListWithValuesFrom1To10_Remove10FirstReturns1()
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
+        [InlineData(9)]
+        [InlineData(10)]
+        public void Remove_ListWithValuesFrom1To10_RemoveLastValueCountReturnsLength(int length)
         {
-            for (int i = 1; i <= 10; i++)
+            for (int i = 1; i <= length; i++)
             {
                 _list.Add(i.ToString());
             }
-            _list.Remove("10");
-            var result = _list.First;
-            var actual = result?.Data;
+            _list.Remove(length.ToString());
+            var actual = _list.Count;
 
-            Assert.Equal("1", actual);
+            Assert.Equal(length - 1, actual);
         }
 
-        [Fact]
-        public void Remove_ListWithValuesFrom1To10_Remove10LastReturns9()
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
+        [InlineData(9)]
+        [InlineData(10)]
+        public void Remove_ListWithValuesFrom1To10_RemoveFirstValueEnumeratorReturnsLength(int length)
         {
-            for (int i = 1; i <= 10; i++)
+            for (int i = 1; i <= length; i++)
             {
                 _list.Add(i.ToString());
             }
-            _list.Remove("10");
-            var result = _list.Last;
-            var actual = result?.Data;
+            _list.Remove("1");
 
-            Assert.Equal("9", actual);
+            int actual = 0;
+            foreach (var item in _list)
+            {
+                actual++;
+            }
+
+            Assert.Equal(length - 1, actual);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
+        [InlineData(9)]
+        [InlineData(10)]
+        public void Remove_ListWithValuesFrom1To10_RemoveLastValueEnumeratorReturnsLength(int length)
+        {
+            for (int i = 1; i <= length; i++)
+            {
+                _list.Add(i.ToString());
+            }
+            _list.Remove(length.ToString());
+
+            int actual = 0;
+            foreach (var item in _list)
+            {
+                actual++;
+            }
+
+            Assert.Equal(length - 1, actual);
         }
     }
 }

@@ -5,23 +5,6 @@ namespace DataStructures.Tests.LinkedList
 {
     public class LinkedList_Add : TestLinkedList
     {
-        [Fact]
-        public void Add_Value1_ReturnsNotNull()
-        {
-            var result = _list.Add("1");
-
-            Assert.NotNull(result);
-        }
-
-        [Fact]
-        public void Add_Value1_ReturnesData0()
-        {
-            var result = _list.Add("1");
-            var actual = result?.Data;
-
-            Assert.Equal("1", actual);
-        }
-
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
@@ -77,7 +60,7 @@ namespace DataStructures.Tests.LinkedList
         [InlineData(8)]
         [InlineData(9)]
         [InlineData(10)]
-        public void Add_ValuesFrom1To10_FirstReturnsData1(int length)
+        public void Add_ValuesFrom1To10_FirstReturns1(int length)
         {
             for (int i = 1; i <= length; i++)
             {
@@ -122,7 +105,7 @@ namespace DataStructures.Tests.LinkedList
         [InlineData(8)]
         [InlineData(9)]
         [InlineData(10)]
-        public void Add_ValuesFrom1To10_LastReturnsData(int length)
+        public void Add_ValuesFrom1To10_LastReturnsLength(int length)
         {
             for (int i = 1; i <= length; i++)
             {
@@ -132,6 +115,33 @@ namespace DataStructures.Tests.LinkedList
             var actual = result?.Data;
 
             Assert.Equal(length.ToString(), actual);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
+        [InlineData(9)]
+        [InlineData(10)]
+        public void Add_ValuesFrom1To10_EnumeratorReturnsLength(int length)
+        {
+            for (int i = 1; i <= length; i++)
+            {
+                _list.Add(i.ToString());
+            }
+
+            int actual = 0;
+            foreach (var item in _list)
+            {
+                actual++;
+            }
+
+            Assert.Equal(length, actual);
         }
     }
 }

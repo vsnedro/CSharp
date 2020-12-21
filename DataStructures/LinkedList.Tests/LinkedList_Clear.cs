@@ -10,8 +10,9 @@ namespace DataStructures.Tests.LinkedList
         {
             _list.Add("");
             _list.Clear();
+            var actual = _list.Count;
 
-            Assert.Equal(0, _list.Count);
+            Assert.Equal(0, actual);
         }
 
         [Fact]
