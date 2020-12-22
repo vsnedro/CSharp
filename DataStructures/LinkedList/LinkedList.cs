@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace DataStructures.LinkedList
 {
     /// <summary>
-    /// Node in a linked list
+    /// Node in a singly linked list
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class Node<T>
@@ -20,7 +20,7 @@ namespace DataStructures.LinkedList
     }
 
     /// <summary>
-    /// Linked list
+    /// Singly linked list
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class LinkedList<T> : IEnumerable<T>
