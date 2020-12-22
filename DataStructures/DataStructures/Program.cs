@@ -1,6 +1,9 @@
 ﻿using System;
 using DataStructures.LinkedList;
 using DataStructures.DoublyLinkedList;
+using DataStructures.Stack;
+using DataStructures.Queue;
+using DataStructures.Deque;
 
 namespace DataStructures
 {
