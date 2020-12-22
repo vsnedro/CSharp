@@ -33,7 +33,29 @@ namespace DataStructures.Tests.DoublyLinkedList
         [InlineData(8)]
         [InlineData(9)]
         [InlineData(10)]
-        public void Contains_ListWithValuesFrom1To10_AddedValueReturnsTrue(int length)
+        public void Contains_ListWithValuesFrom1To10_AddFirstValueReturnsTrue(int length)
+        {
+            for (int i = 1; i <= length; i++)
+            {
+                _list.AddFirst(i.ToString());
+            }
+            var actual = _list.Contains(length.ToString());
+
+            Assert.True(actual);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
+        [InlineData(9)]
+        [InlineData(10)]
+        public void Contains_ListWithValuesFrom1To10_AddValueReturnsTrue(int length)
         {
             for (int i = 1; i <= length; i++)
             {
