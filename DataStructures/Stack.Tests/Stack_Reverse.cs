@@ -25,7 +25,7 @@ namespace DataStructures.Tests.Stack
         [InlineData(8)]
         [InlineData(9)]
         [InlineData(10)]
-        public void Reverse_StackWithValuesFrom1To10_CountReturnsLength(int length)
+        public void Reverse_StackWithValuesFrom1To10_CountReturnsStackLength(int length)
         {
             for (int i = 1; i <= length; i++)
             {

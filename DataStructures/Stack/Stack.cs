@@ -78,10 +78,10 @@ namespace DataStructures.Stack
         {
             if (count > 0)
             {
-                var data = first.Data;
+                var result = first.Data;
                 first = first.Next;
                 count--;
-                return data;
+                return result;
             }
             throw new InvalidOperationException("Stack is empty");
         }
