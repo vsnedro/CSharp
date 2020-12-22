@@ -16,7 +16,7 @@ namespace DataStructures.Tests.LinkedList
         [InlineData(8)]
         [InlineData(9)]
         [InlineData(10)]
-        public void Add_ValuesFrom1To10_CountReturnsLength(int length)
+        public void AddFirst_ValuesFrom1To10_CountReturnsLength(int length)
         {
             for (int i = 1; i <= length; i++)
             {
@@ -38,7 +38,7 @@ namespace DataStructures.Tests.LinkedList
         [InlineData(8)]
         [InlineData(9)]
         [InlineData(10)]
-        public void Add_ValuesFrom1To10_FirstReturnsNotNull(int length)
+        public void AddFirst_ValuesFrom1To10_FirstReturnsNotNull(int length)
         {
             for (int i = 1; i <= length; i++)
             {
@@ -60,7 +60,7 @@ namespace DataStructures.Tests.LinkedList
         [InlineData(8)]
         [InlineData(9)]
         [InlineData(10)]
-        public void Add_ValuesFrom1To10_FirstReturnsLength(int length)
+        public void AddFirst_ValuesFrom1To10_FirstReturnsLength(int length)
         {
             for (int i = 1; i <= length; i++)
             {
@@ -83,7 +83,7 @@ namespace DataStructures.Tests.LinkedList
         [InlineData(8)]
         [InlineData(9)]
         [InlineData(10)]
-        public void Add_ValuesFrom1To10_LastReturnsNotNull(int length)
+        public void AddFirst_ValuesFrom1To10_LastReturnsNotNull(int length)
         {
             for (int i = 1; i <= length; i++)
             {
@@ -105,7 +105,7 @@ namespace DataStructures.Tests.LinkedList
         [InlineData(8)]
         [InlineData(9)]
         [InlineData(10)]
-        public void Add_ValuesFrom1To10_LastReturns1(int length)
+        public void AddFirst_ValuesFrom1To10_LastReturns1(int length)
         {
             for (int i = 1; i <= length; i++)
             {
@@ -128,7 +128,7 @@ namespace DataStructures.Tests.LinkedList
         [InlineData(8)]
         [InlineData(9)]
         [InlineData(10)]
-        public void Add_ValuesFrom1To10_EnumeratorReturnsLength(int length)
+        public void AddFirst_ValuesFrom1To10_EnumeratorReturnsLength(int length)
         {
             for (int i = 1; i <= length; i++)
             {
