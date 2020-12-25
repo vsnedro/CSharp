@@ -26,22 +26,22 @@ namespace DataStructures.DoublyLinkedList
     /// <typeparam name="T"></typeparam>
     public class DoublyLinkedList<T> : IEnumerable<T>
     {
-        private DoublyNode<T> first = null;
-        private DoublyNode<T> last = null;
-        private int count = 0;
+        private DoublyNode<T> _first = null;
+        private DoublyNode<T> _last = null;
+        private int _count = 0;
 
         /// <summary>
         /// Gets the number of elements contained in the list.
         /// </summary>
-        public int Count { get => count; }
+        public int Count { get => _count; }
         /// <summary>
         /// Gets the first element in the list.
         /// </summary>
-        public DoublyNode<T> First { get => first; }
+        public DoublyNode<T> First { get => _first; }
         /// <summary>
         /// Gets the last element in the list.
         /// </summary>
-        public DoublyNode<T> Last { get => last; }
+        public DoublyNode<T> Last { get => _last; }
 
         /// <summary>
         /// Adds an element to the end of the list.
@@ -51,18 +51,18 @@ namespace DataStructures.DoublyLinkedList
             var node = new DoublyNode<T>(data);
 
             // empty list
-            if (first == null)
+            if (_first == null)
             {
-                first = node;
+                _first = node;
             }
             // non-empty list
             else
             {
-                last.Next = node;
-                node.Prev = last;
+                _last.Next = node;
+                node.Prev = _last;
             }
-            last = node;
-            count++;
+            _last = node;
+            _count++;
         }
 
         /// <summary>
@@ -73,18 +73,18 @@ namespace DataStructures.DoublyLinkedList
             var node = new DoublyNode<T>(data);
 
             // empty list
-            if (first == null)
+            if (_first == null)
             {
-                last = node;
+                _last = node;
             }
             // non-empty list
             else
             {
-                node.Next = first;
-                first.Prev = node;
+                node.Next = _first;
+                _first.Prev = node;
             }
-            first = node;
-            count++;
+            _first = node;
+            _count++;
         }
 
         /// <summary>
@@ -92,9 +92,9 @@ namespace DataStructures.DoublyLinkedList
         /// </summary>
         public void Clear()
         {
-            first = null;
-            last  = null;
-            count = 0;
+            _first = null;
+            _last  = null;
+            _count = 0;
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace DataStructures.DoublyLinkedList
         /// </summary>
         public bool Contains(T data)
         {
-            var curr = first;
+            var curr = _first;
 
             while (curr != null)
             {
@@ -124,30 +124,30 @@ namespace DataStructures.DoublyLinkedList
         /// </returns>
         public bool Remove(T data)
         {
-            DoublyNode<T> prev = null, curr = first, next;
+            DoublyNode<T> prev = null, curr = _first, next;
 
             while (curr != null)
             {
                 next = curr.Next;
                 if (curr.Data.Equals(data))
                 {
-                    if (curr == first)
+                    if (curr == _first)
                     {
-                        first = next;
+                        _first = next;
                     }
                     else
                     {
                         prev.Next = next;
                     }
-                    if (curr == last)
+                    if (curr == _last)
                     {
-                        last = prev;
+                        _last = prev;
                     }
                     if (next != null)
                     {
                         next.Prev = prev;
                     }
-                    count--;
+                    _count--;
                     return true;
                 }
                 prev = curr;
@@ -161,7 +161,7 @@ namespace DataStructures.DoublyLinkedList
         /// </summary>
         public void Reverse()
         {
-            DoublyNode<T> prev = null, curr = first, next;
+            DoublyNode<T> prev = null, curr = _first, next;
 
             while (curr != null)
             {
@@ -171,8 +171,8 @@ namespace DataStructures.DoublyLinkedList
                 prev = curr;
                 curr = next;
             }
-            last = first;
-            first = prev;
+            _last = _first;
+            _first = prev;
         }
 
         /// <summary>
@@ -183,8 +183,8 @@ namespace DataStructures.DoublyLinkedList
         /// </returns>
         public T[] ToArray()
         {
-            T[] result = new T[count];
-            var curr = first;
+            T[] result = new T[_count];
+            var curr = _first;
             var index = 0;
             while (curr != null)
             {
@@ -198,7 +198,7 @@ namespace DataStructures.DoublyLinkedList
         #region IEnumerator<T>
         public IEnumerator<T> GetEnumerator()
         {
-            var curr = first;
+            var curr = _first;
             while (curr != null)
             {
                 yield return curr.Data;
@@ -213,7 +213,7 @@ namespace DataStructures.DoublyLinkedList
 
         public IEnumerable<T> BackEnumerator()
         {
-            var curr = last;
+            var curr = _last;
             while (curr != null)
             {
                 yield return curr.Data;

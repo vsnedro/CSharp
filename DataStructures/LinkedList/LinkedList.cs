@@ -11,7 +11,7 @@ namespace DataStructures.LinkedList
     public class Node<T>
     {
         public T Data { get; }
-        public Node<T> Next { get; set;  }
+        public Node<T> Next { get; set; }
 
         public Node(T data)
         {
@@ -25,22 +25,22 @@ namespace DataStructures.LinkedList
     /// <typeparam name="T"></typeparam>
     public class LinkedList<T> : IEnumerable<T>
     {
-        private Node<T> first = null;
-        private Node<T> last  = null;
-        private int count = 0;
+        private Node<T> _first = null;
+        private Node<T> _last  = null;
+        private int _count = 0;
 
         /// <summary>
         /// Gets the number of elements contained in the list.
         /// </summary>
-        public int Count { get => count; }
+        public int Count { get => _count; }
         /// <summary>
         /// Gets the first element in the list.
         /// </summary>
-        public Node<T> First { get => first; }
+        public Node<T> First { get => _first; }
         /// <summary>
         /// Gets the last element in the list.
         /// </summary>
-        public Node<T> Last { get => last; }
+        public Node<T> Last { get => _last; }
 
         /// <summary>
         /// Adds an element to the end of the list.
@@ -50,17 +50,17 @@ namespace DataStructures.LinkedList
             var node = new Node<T>(data);
 
             // empty list
-            if (first == null)
+            if (_first == null)
             {
-                first = node;
+                _first = node;
             }
             // non-empty list
             else
             {
-                last.Next = node;
+                _last.Next = node;
             }
-            last = node;
-            count++;
+            _last = node;
+            _count++;
         }
 
         /// <summary>
@@ -71,17 +71,17 @@ namespace DataStructures.LinkedList
             var node = new Node<T>(data);
 
             // empty list
-            if (first == null)
+            if (_first == null)
             {
-                last = node;
+                _last = node;
             }
             // non-empty list
             else
             {
-                node.Next = first;
+                node.Next = _first;
             }
-            first = node;
-            count++;
+            _first = node;
+            _count++;
         }
 
         /// <summary>
@@ -89,9 +89,9 @@ namespace DataStructures.LinkedList
         /// </summary>
         public void Clear()
         {
-            first = null;
-            last  = null;
-            count = 0;
+            _first = null;
+            _last  = null;
+            _count = 0;
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace DataStructures.LinkedList
         /// </summary>
         public bool Contains(T data)
         {
-            var curr = first;
+            var curr = _first;
 
             while (curr != null)
             {
@@ -120,7 +120,7 @@ namespace DataStructures.LinkedList
         /// </returns>  
         public int IndexOf(T data)
         {
-            var curr  = first;
+            var curr  = _first;
             var index = 0;
 
             while (curr != null)
@@ -144,21 +144,21 @@ namespace DataStructures.LinkedList
             {
                 var node = new Node<T>(data)
                 {
-                    Next = first
+                    Next = _first
                 };
-                first = node;
-                last ??= node;  // if list was empty
-                count++;
+                _first = node;
+                _last ??= node;  // if list was empty
+                _count++;
             }
             else
-            if (index == count)
+            if (index == _count)
             {
                 Add(data);
             }
             else
-            if (index > 0 && index < count)
+            if (index > 0 && index < _count)
             {
-                var prev = first;
+                var prev = _first;
                 for (int i = 0; i < index - 1; i++)
                 {
                     prev = prev.Next;
@@ -168,7 +168,7 @@ namespace DataStructures.LinkedList
                     Next = prev.Next
                 };
                 prev.Next = node;
-                count++;
+                _count++;
             }
             else 
             {
@@ -185,25 +185,25 @@ namespace DataStructures.LinkedList
         /// </returns>
         public bool Remove(T data)
         {
-            Node<T> prev = null, curr = first;
+            Node<T> prev = null, curr = _first;
 
             while (curr != null)
             {
                 if (curr.Data.Equals(data))
                 {
-                    if (curr == first)
+                    if (curr == _first)
                     {
-                        first = curr.Next;
+                        _first = curr.Next;
                     }
                     else
                     {
                         prev.Next = curr.Next;
                     }
-                    if (curr == last)
+                    if (curr == _last)
                     {
-                        last = prev;
+                        _last = prev;
                     }
-                    count--;
+                    _count--;
                     return true;
                 }
                 prev = curr;
@@ -217,7 +217,7 @@ namespace DataStructures.LinkedList
         /// </summary>
         public void Reverse()
         {
-            Node<T> prev = null, curr = first, next;
+            Node<T> prev = null, curr = _first, next;
 
             while (curr != null)
             {
@@ -226,8 +226,8 @@ namespace DataStructures.LinkedList
                 prev = curr;
                 curr = next;
             }
-            last  = first;
-            first = prev;
+            _last  = _first;
+            _first = prev;
         }
 
         /// <summary>
@@ -238,8 +238,8 @@ namespace DataStructures.LinkedList
         /// </returns>
         public T[] ToArray()
         {
-            T[] result = new T[count];
-            var curr = first;
+            T[] result = new T[_count];
+            var curr = _first;
             var index = 0;
             while (curr != null)
             {
@@ -253,7 +253,7 @@ namespace DataStructures.LinkedList
         #region IEnumerable<T>
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
-            var curr = first;
+            var curr = _first;
             while (curr != null)
             {
                 yield return curr.Data;

@@ -25,22 +25,22 @@ namespace DataStructures.Queue
     /// <typeparam name="T"></typeparam>
     public class Queue<T> : IEnumerable<T>
     {
-        private Node<T> first = null;
-        private Node<T> last = null;
-        private int count = 0;
+        private Node<T> _first = null;
+        private Node<T> _last = null;
+        private int _count = 0;
 
         /// <summary>
         /// Gets the number of elements contained in the queue.
         /// </summary>
-        public int Count { get => count; }
+        public int Count { get => _count; }
 
         /// <summary>
         /// Removes all elements from the queue.
         /// </summary>
         public void Clear()
         {
-            first = null;
-            count = 0;
+            _first = null;
+            _count = 0;
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace DataStructures.Queue
         /// </summary>
         public bool Contains(T item)
         {
-            var curr = first;
+            var curr = _first;
             while (curr != null)
             {
                 if (curr.Data.Equals(item))
@@ -65,18 +65,18 @@ namespace DataStructures.Queue
         /// </summary>
         public T Dequeue()
         {
-            if (count > 0)
+            if (_count <= 0)
             {
-                var result = first.Data;
-                first = first.Next;
-                if (first == null)
-                {
-                    last = null;
-                }
-                count--;
-                return result;
+                throw new InvalidOperationException("Queue is empty");
             }
-            throw new InvalidOperationException("Queue is empty");
+            var result = _first.Data;
+            _first = _first.Next;
+            if (_first == null)
+            {
+                _last = null;
+            }
+            _count--;
+            return result;
         }
 
         /// <summary>
@@ -86,17 +86,17 @@ namespace DataStructures.Queue
         {
             var node = new Node<T>(item);
             // empty list
-            if (first == null)
+            if (_first == null)
             {
-                first = node;
+                _first = node;
             }
             // non-empty list
             else
             {
-                last.Next = node;
+                _last.Next = node;
             }
-            last = node;
-            count++;
+            _last = node;
+            _count++;
         }
 
         /// <summary>
@@ -104,11 +104,11 @@ namespace DataStructures.Queue
         /// </summary>
         public T Peek()
         {
-            if (count > 0)
+            if (_count <= 0)
             {
-                return first.Data;
+                throw new InvalidOperationException("Queue is empty");
             }
-            throw new InvalidOperationException("Queue is empty");
+            return _first.Data;
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace DataStructures.Queue
         /// </summary>
         public void Reverse()
         {
-            Node<T> prev = null, curr = first, next;
+            Node<T> prev = null, curr = _first, next;
             while (curr != null)
             {
                 next = curr.Next;
@@ -124,7 +124,7 @@ namespace DataStructures.Queue
                 prev = curr;
                 curr = next;
             }
-            first = prev;
+            _first = prev;
         }
 
         /// <summary>
@@ -135,8 +135,8 @@ namespace DataStructures.Queue
         /// </returns>
         public T[] ToArray()
         {
-            T[] result = new T[count];
-            var curr = first;
+            var result = new T[_count];
+            var curr = _first;
             var index = 0;
             while (curr != null)
             {
@@ -150,7 +150,7 @@ namespace DataStructures.Queue
         #region IEnumerable<T>
         public IEnumerator<T> GetEnumerator()
         {
-            var curr = first;
+            var curr = _first;
             while (curr != null)
             {
                 yield return curr.Data;

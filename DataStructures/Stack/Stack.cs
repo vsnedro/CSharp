@@ -25,21 +25,21 @@ namespace DataStructures.Stack
     /// <typeparam name="T"></typeparam>
     public class Stack<T> : IEnumerable<T>
     {
-        private Node<T> first = null;
-        private int count = 0;
+        private Node<T> _first = null;
+        private int _count = 0;
 
         /// <summary>
         /// Gets the number of elements contained in the stack.
         /// </summary>
-        public int Count { get => count; }
+        public int Count { get => _count; }
 
         /// <summary>
         /// Removes all elements from the stack.
         /// </summary>
         public void Clear()
         {
-            first = null;
-            count = 0;
+            _first = null;
+            _count = 0;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace DataStructures.Stack
         /// </summary>
         public bool Contains(T item)
         {
-            var curr = first;
+            var curr = _first;
             while (curr != null)
             {
                 if (curr.Data.Equals(item))
@@ -64,11 +64,11 @@ namespace DataStructures.Stack
         /// </summary>
         public T Peek()
         {
-            if (count > 0)
+            if (_count <= 0)
             {
-                return first.Data;
+                throw new InvalidOperationException("Stack is empty");
             }
-            throw new InvalidOperationException("Stack is empty");
+            return _first.Data;
         }
 
         /// <summary>
@@ -76,14 +76,14 @@ namespace DataStructures.Stack
         /// </summary>
         public T Pop()
         {
-            if (count > 0)
+            if (_count <= 0)
             {
-                var result = first.Data;
-                first = first.Next;
-                count--;
-                return result;
+                throw new InvalidOperationException("Stack is empty");
             }
-            throw new InvalidOperationException("Stack is empty");
+            var result = _first.Data;
+            _first = _first.Next;
+            _count--;
+            return result;
         }
 
         /// <summary>
@@ -93,10 +93,10 @@ namespace DataStructures.Stack
         {
             var node = new Node<T>(item)
             {
-                Next = first
+                Next = _first
             };
-            first = node;
-            count++;
+            _first = node;
+            _count++;
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace DataStructures.Stack
         /// </summary>
         public void Reverse()
         {
-            Node<T> prev = null, curr = first, next;
+            Node<T> prev = null, curr = _first, next;
             while (curr != null)
             {
                 next = curr.Next;
@@ -112,7 +112,7 @@ namespace DataStructures.Stack
                 prev = curr;
                 curr = next;
             }
-            first = prev;
+            _first = prev;
         }
 
         /// <summary>
@@ -123,8 +123,8 @@ namespace DataStructures.Stack
         /// </returns>
         public T[] ToArray()
         {
-            T[] result = new T[count];
-            var curr = first;
+            T[] result = new T[_count];
+            var curr = _first;
             var index = 0;
             while (curr != null)
             {
@@ -138,7 +138,7 @@ namespace DataStructures.Stack
         #region IEnumerable<T>
         public IEnumerator<T> GetEnumerator()
         {
-            var curr = first;
+            var curr = _first;
             while (curr != null)
             {
                 yield return curr.Data;

@@ -26,23 +26,23 @@ namespace DataStructures.Deque
     /// <typeparam name="T"></typeparam>
     public class Deque<T> : IEnumerable<T>
     {
-        private DoublyNode<T> first = null;
-        private DoublyNode<T> last = null;
-        private int count = 0;
+        private DoublyNode<T> _first = null;
+        private DoublyNode<T> _last = null;
+        private int _count = 0;
 
         /// <summary>
         /// Gets the number of elements contained in the deque.
         /// </summary>
-        public int Count { get => count; }
+        public int Count { get => _count; }
 
         /// <summary>
         /// Removes all elements from the queue.
         /// </summary>
         public void Clear()
         {
-            first = null;
-            last = null;
-            count = 0;
+            _first = null;
+            _last = null;
+            _count = 0;
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace DataStructures.Deque
         /// </summary>
         public bool Contains(T item)
         {
-            var curr = first;
+            var curr = _first;
             while (curr != null)
             {
                 if (curr.Data.Equals(item))
@@ -67,23 +67,23 @@ namespace DataStructures.Deque
         /// </summary>
         public T PopBack()
         {
-            if (count > 0)
+            if (_count <= 0)
             {
-                var result = last.Data;
-                var prev = last.Prev;
-                last = prev;
-                if (prev != null)
-                {
-                    prev.Next = null;
-                }
-                if (last == null)
-                {
-                    first = null;
-                }
-                count--;
-                return result;
+                throw new InvalidOperationException("Deque is empty");
             }
-            throw new InvalidOperationException("Deque is empty");
+            var result = _last.Data;
+            var prev = _last.Prev;
+            _last = prev;
+            if (prev != null)
+            {
+                prev.Next = null;
+            }
+            if (_last == null)
+            {
+                _first = null;
+            }
+            _count--;
+            return result;
         }
 
         /// <summary>
@@ -91,23 +91,23 @@ namespace DataStructures.Deque
         /// </summary>
         public T PopFront()
         {
-            if (count > 0)
+            if (_count <= 0)
             {
-                var result = first.Data;
-                var next = first.Next;
-                first = next;
-                if (next != null)
-                {
-                    next.Prev = null;
-                }
-                if (first == null)
-                {
-                    last = null;
-                }
-                count--;
-                return result;
+                throw new InvalidOperationException("Deque is empty");
             }
-            throw new InvalidOperationException("Deque is empty");
+            var result = _first.Data;
+            var next = _first.Next;
+            _first = next;
+            if (next != null)
+            {
+                next.Prev = null;
+            }
+            if (_first == null)
+            {
+                _last = null;
+            }
+            _count--;
+            return result;
         }
 
         /// <summary>
@@ -117,18 +117,18 @@ namespace DataStructures.Deque
         {
             var node = new DoublyNode<T>(item);
             // empty list
-            if (first == null)
+            if (_first == null)
             {
-                first = node;
+                _first = node;
             }
             // non-empty list
             else
             {
-                last.Next = node;
-                node.Prev = last;
+                _last.Next = node;
+                node.Prev = _last;
             }
-            last = node;
-            count++;
+            _last = node;
+            _count++;
         }
 
         /// <summary>
@@ -138,18 +138,18 @@ namespace DataStructures.Deque
         {
             var node = new DoublyNode<T>(item);
             // empty list
-            if (first == null)
+            if (_first == null)
             {
-                last = node;
+                _last = node;
             }
             // non-empty list
             else
             {
-                node.Next = first;
-                first.Prev = node;
+                node.Next = _first;
+                _first.Prev = node;
             }
-            first = node;
-            count++;
+            _first = node;
+            _count++;
         }
 
         /// <summary>
@@ -157,9 +157,9 @@ namespace DataStructures.Deque
         /// </summary>
         public T PeekFront()
         {
-            if (count > 0)
+            if (_count > 0)
             {
-                return first.Data;
+                return _first.Data;
             }
             throw new InvalidOperationException("Deque is empty");
         }
@@ -169,9 +169,9 @@ namespace DataStructures.Deque
         /// </summary>
         public T PeekBack()
         {
-            if (count > 0)
+            if (_count > 0)
             {
-                return last.Data;
+                return _last.Data;
             }
             throw new InvalidOperationException("Deque is empty");
         }
@@ -181,7 +181,7 @@ namespace DataStructures.Deque
         /// </summary>
         public void Reverse()
         {
-            DoublyNode<T> prev = null, curr = first, next;
+            DoublyNode<T> prev = null, curr = _first, next;
             while (curr != null)
             {
                 next = curr.Next;
@@ -190,8 +190,8 @@ namespace DataStructures.Deque
                 prev = curr;
                 curr = next;
             }
-            last = first;
-            first = prev;
+            _last = _first;
+            _first = prev;
         }
 
         /// <summary>
@@ -202,8 +202,8 @@ namespace DataStructures.Deque
         /// </returns>
         public T[] ToArray()
         {
-            T[] result = new T[count];
-            var curr = first;
+            T[] result = new T[_count];
+            var curr = _first;
             var index = 0;
             while (curr != null)
             {
@@ -217,7 +217,7 @@ namespace DataStructures.Deque
         #region IEnumerable<T>
         public IEnumerator<T> GetEnumerator()
         {
-            var curr = first;
+            var curr = _first;
             while (curr != null)
             {
                 yield return curr.Data;
@@ -232,7 +232,7 @@ namespace DataStructures.Deque
 
         public IEnumerable<T> BackEnumerator()
         {
-            var curr = last;
+            var curr = _last;
             while (curr != null)
             {
                 yield return curr.Data;
