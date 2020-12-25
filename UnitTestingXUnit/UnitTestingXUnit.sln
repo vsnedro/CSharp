@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeService", "PrimeServic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeService.Tests", "PrimeService.Tests\PrimeService.Tests.csproj", "{06D55D8B-F273-43C1-AE48-2C8C63C75BBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FibonacciService", "FibonacciService\FibonacciService.csproj", "{632F4A42-0DDF-4CDC-B611-9FDF874925BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FibonacciService", "FibonacciService\FibonacciService.csproj", "{632F4A42-0DDF-4CDC-B611-9FDF874925BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FibonacciService.Tests", "FibonacciService.Tests\FibonacciService.Tests.csproj", "{725C36B0-0DF1-48AB-AF4F-C973DE5CA68F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FibonacciService.Tests", "FibonacciService.Tests\FibonacciService.Tests.csproj", "{725C36B0-0DF1-48AB-AF4F-C973DE5CA68F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleDemo", "ConsoleDemo\ConsoleDemo.csproj", "{CFC9B98B-D139-415F-9958-B8D7E864567F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{725C36B0-0DF1-48AB-AF4F-C973DE5CA68F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{725C36B0-0DF1-48AB-AF4F-C973DE5CA68F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{725C36B0-0DF1-48AB-AF4F-C973DE5CA68F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFC9B98B-D139-415F-9958-B8D7E864567F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFC9B98B-D139-415F-9958-B8D7E864567F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFC9B98B-D139-415F-9958-B8D7E864567F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFC9B98B-D139-415F-9958-B8D7E864567F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

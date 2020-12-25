@@ -10,14 +10,14 @@ namespace Fibonacci.Services
             {
                 return 0;
             }
-            if (n == 1)
+            if (n <= 2)
             {
                 return 1;
             }
 
-            uint a = 0;
+            uint a = 1;
             uint b = 1;
-            for (int i = 2; i <= n; i++)
+            for (int i = 3; i <= n; i++)
             {
                 b = b + a;
                 a = b - a;
