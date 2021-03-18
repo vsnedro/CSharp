@@ -8,8 +8,8 @@ namespace FileTreeBuilderLib
 {
     public class FileTreeSorter
     {
-        private readonly DirectoryComparer _directoryComparer = new DirectoryComparer();
-        private readonly FileComparer _fileComparer = new FileComparer();
+        private readonly DirectoryComparer _directoryComparer = new();
+        private readonly FileComparer _fileComparer = new();
 
         public void Sort(FileTree tree)
         {
