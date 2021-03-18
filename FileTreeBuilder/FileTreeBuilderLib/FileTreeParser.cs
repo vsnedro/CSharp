@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FileTreeBuilderLib
 {
     public class FileTreeParser
     {
-        public async Task<FileTree> ParseAsync(string fileName, bool sort = true)
+        public FileTree Parse(string fileName, bool sort = true)
         {
-            var lines = await File.ReadAllLinesAsync(fileName);
+            var lines = File.ReadAllLines(fileName);
 
             return Parse(lines, sort);
         }
