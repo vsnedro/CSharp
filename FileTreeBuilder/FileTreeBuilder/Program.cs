@@ -7,7 +7,7 @@ namespace FileTreeBuilder
     {
         static void Main(string[] args)
         {
-            FileTreeBuilderLib.FileTreeBuilder.Build("D:\\Temp\\files.txt", "D:\\Temp\\tree.txt");
+            FileTreeBuilderLib.FileTreeBuilder.BuildAndWrite("D:\\Temp\\files.txt", "D:\\Temp\\tree.txt");
 
             Console.WriteLine("\nPress any key to exit...");
             Console.ReadKey();
