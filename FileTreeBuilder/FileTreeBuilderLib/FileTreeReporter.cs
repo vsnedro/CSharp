@@ -16,18 +16,18 @@ namespace FileTreeBuilderLib
             }
             using (var writer = new StreamWriter(fileName))
             {
-                ExportToFileInternal(tree.Root, writer);
+                InternalExportToFile(tree.Root, writer);
             }
         }
 
-        private void ExportToFileInternal(FileTree.DirectoryNode node, TextWriter writer, string indent = "")
+        private void InternalExportToFile(FileTree.DirectoryNode node, TextWriter writer, string indent = "")
         {
             // 1. Output directory nodes
             foreach (var directory in node.Directories)
             {
                 writer.WriteLine(indent + $"{directory.Name}\\");
                 // 2. Output recursively all child directory nodes
-                ExportToFileInternal(directory, writer, indent + "\t");
+                InternalExportToFile(directory, writer, indent + "\t");
             }
             
             // 3. Output file nodes
