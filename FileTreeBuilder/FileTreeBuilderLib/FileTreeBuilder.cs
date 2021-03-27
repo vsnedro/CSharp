@@ -24,15 +24,15 @@ namespace FileTreeBuilderLib
         }
 
         /// <summary>
-        /// Build a file tree based on a file with full paths
+        /// Build a file tree based on a file with full paths and write it to a file
         /// </summary>
-        /// <param name="input">Input file name</param>
-        /// <param name="output">Output file name</param>
-        public static void Build(string input, string output)
+        /// <param name="inFilename">Input file name</param>
+        /// <param name="outFilename">Output file name</param>
+        public static void BuildAndWrite(string inFilename, string outFilename)
         {
-            var tree = Build(input);
+            var tree = Build(inFilename);
             var reporter = new FileTreeReporter();
-            reporter.ExportToFile(tree, output);
+            reporter.ExportToFile(tree, outFilename);
         }
     }
 }
