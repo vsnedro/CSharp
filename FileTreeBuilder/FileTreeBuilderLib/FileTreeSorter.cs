@@ -8,15 +8,15 @@ namespace FileTreeBuilderLib
 {
     public class FileTreeSorter
     {
-        private readonly DirectoryComparer _directoryComparer = new();
-        private readonly FileComparer _fileComparer = new();
+        private readonly DirectoryComparerByName _directoryComparer = new();
+        private readonly FileComparerBySizeAndName _fileComparer = new();
 
         public void Sort(FileTree tree)
         {
-            SortInternal(tree.Root);
+            InternalSort(tree.Root);
         }
 
-        private void SortInternal(FileTree.DirectoryNode node)
+        private void InternalSort(FileTree.DirectoryNode node)
         {
             // 1. Sort directory nodes
             node.Directories.Sort(_directoryComparer);
@@ -27,23 +27,46 @@ namespace FileTreeBuilderLib
             // 3. Sort recursively for all child directory nodes
             foreach (var directory in node.Directories)
             {
-                SortInternal(directory);
+                InternalSort(directory);
             }
         }
 
-        private class DirectoryComparer : IComparer<FileTree.DirectoryNode>
+        private class DirectoryComparerByName : IComparer<FileTree.DirectoryNode>
         {
             public int Compare(FileTree.DirectoryNode x, FileTree.DirectoryNode y)
             {
-                return x.Name.CompareTo(y.Name);
+                if (x == null)
+                {
+                    return y == null ? 0 : -1;
+                }
+                else
+                {
+                    return y == null ? 1 : string.Compare(x.Name, y.Name, StringComparison.Ordinal);
+                }
             }
         }
 
-        private class FileComparer : IComparer<FileTree.FileNode>
+        private class FileComparerBySizeAndName : IComparer<FileTree.FileNode>
         {
             public int Compare(FileTree.FileNode x, FileTree.FileNode y)
             {
-                return y.Size.CompareTo(x.Size);
+                if (x == null)
+                {
+                    return y == null ? 0 : -1;
+                }
+                else
+                {
+                    if (y == null)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return x.Size == y.Size ? 
+                            string.Compare(x.Name, y.Name, StringComparison.Ordinal) : 
+                            y.Size.CompareTo(x.Size);
+                    }
+                }
             }
         }
     }
