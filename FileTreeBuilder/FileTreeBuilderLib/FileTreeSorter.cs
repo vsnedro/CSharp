@@ -41,7 +41,7 @@ namespace FileTreeBuilderLib
                 }
                 else
                 {
-                    return y == null ? 1 : string.Compare(x.Name, y.Name, StringComparison.Ordinal);
+                    return y == null ? 1 : string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase);
                 }
             }
         }
@@ -63,7 +63,7 @@ namespace FileTreeBuilderLib
                     else
                     {
                         return x.Size == y.Size ? 
-                            string.Compare(x.Name, y.Name, StringComparison.Ordinal) : 
+                            string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase) : 
                             y.Size.CompareTo(x.Size);
                     }
                 }
