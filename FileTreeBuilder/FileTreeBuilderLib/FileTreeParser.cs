@@ -22,7 +22,7 @@ namespace FileTreeBuilderLib
             var lines = strings.ToArray();
             if (sort)
             {
-                Array.Sort(lines);
+                Array.Sort(lines, StringComparer.OrdinalIgnoreCase);
             }
 
             foreach (var line in lines)
