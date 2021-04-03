@@ -8,23 +8,18 @@ namespace FileTreeBuilderLib
 {
     public class FileTreeParser
     {
-        public FileTree Parse(string fileName, bool sort = true)
+        public FileTree Parse(string fileName)
         {
             var lines = File.ReadAllLines(fileName);
 
-            return Parse(lines, sort);
+            return Parse(lines);
         }
 
-        public FileTree Parse(IEnumerable<string> strings, bool sort = true)
+        public FileTree Parse(IEnumerable<string> strings)
         {
             var tree = new FileTree();
 
             var lines = strings.ToArray();
-            if (sort)
-            {
-                Array.Sort(lines, StringComparer.OrdinalIgnoreCase);
-            }
-
             foreach (var line in lines)
             {
                 if (string.IsNullOrEmpty(line)) continue;

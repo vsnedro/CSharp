@@ -122,7 +122,7 @@ namespace FileTreeBuilder.Tests.FileTreeParser
             var tree = _fileTreeParser.Parse(_lines);
             var actual = tree.Root.Directories[0].Name;
 
-            Assert.AreEqual("A", actual);
+            Assert.AreEqual("B", actual);
         }
 
         [Test]
@@ -130,26 +130,6 @@ namespace FileTreeBuilder.Tests.FileTreeParser
         {
             _lines = new[] { "B", "A" };
             var tree = _fileTreeParser.Parse(_lines);
-            var actual = tree.Root.Directories[1].Name;
-
-            Assert.AreEqual("B", actual);
-        }
-
-        [Test]
-        public void Parse_LinesWith2DirectoriesWithoutSort_Returns1stDirectoryName()
-        {
-            _lines = new[] { "B", "A" };
-            var tree = _fileTreeParser.Parse(_lines, false);
-            var actual = tree.Root.Directories[0].Name;
-
-            Assert.AreEqual("B", actual);
-        }
-
-        [Test]
-        public void Parse_LinesWith2DirectoriesWithoutSort_Returns2ndDirectoryName()
-        {
-            _lines = new[] { "B", "A" };
-            var tree = _fileTreeParser.Parse(_lines, false);
             var actual = tree.Root.Directories[1].Name;
 
             Assert.AreEqual("A", actual);
@@ -172,7 +152,7 @@ namespace FileTreeBuilder.Tests.FileTreeParser
             var tree = _fileTreeParser.Parse(_lines);
             var actual = tree.Root.Files[0].Name;
 
-            Assert.AreEqual("A", actual);
+            Assert.AreEqual("B", actual);
         }
 
         [Test]
@@ -180,26 +160,6 @@ namespace FileTreeBuilder.Tests.FileTreeParser
         {
             _lines = new[] { "B 2", "A 1" };
             var tree = _fileTreeParser.Parse(_lines);
-            var actual = tree.Root.Files[1].Name;
-
-            Assert.AreEqual("B", actual);
-        }
-
-        [Test]
-        public void Parse_Lines2FilesWithoutSort_Returns1stFileName()
-        {
-            _lines = new[] { "B 2", "A 1" };
-            var tree = _fileTreeParser.Parse(_lines, false);
-            var actual = tree.Root.Files[0].Name;
-
-            Assert.AreEqual("B", actual);
-        }
-
-        [Test]
-        public void Parse_Lines2FilesWithoutSort_Returns2ndFileName()
-        {
-            _lines = new[] { "B 2", "A 1" };
-            var tree = _fileTreeParser.Parse(_lines, false);
             var actual = tree.Root.Files[1].Name;
 
             Assert.AreEqual("A", actual);
