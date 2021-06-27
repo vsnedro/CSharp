@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace FileTreeBuilderLib
 {
     public class FileTree
     {
-        public DirectoryNode Root = new("");
+        public DirectoryNode Root { get; } = new("");
 
         public abstract class TreeNodeCustom
         {
@@ -32,8 +28,8 @@ namespace FileTreeBuilderLib
 
         public class DirectoryNode : TreeNodeCustom
         {
-            public List<DirectoryNode> Directories = new();
-            public List<FileNode> Files = new();
+            public List<DirectoryNode> Directories { get; } = new();
+            public List<FileNode> Files { get; } = new();
 
             public DirectoryNode(string name) : base(name)
             {
