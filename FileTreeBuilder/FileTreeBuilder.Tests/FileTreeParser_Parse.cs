@@ -1,5 +1,4 @@
 using System;
-using FileTreeBuilderLib;
 using NUnit.Framework;
 
 namespace FileTreeBuilder.Tests.FileTreeParser
