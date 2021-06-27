@@ -10,6 +10,9 @@ namespace FileTreeBuilderLib
     {
         public void ExportToFile(FileTree tree, string fileName)
         {
+            if (tree == null)
+                throw new ArgumentNullException(nameof(tree));
+
             if (File.Exists(fileName))
             {
                 File.Delete(fileName);
@@ -22,6 +25,11 @@ namespace FileTreeBuilderLib
 
         private void InternalExportToFile(FileTree.DirectoryNode node, TextWriter writer, string indent = "")
         {
+            if (node == null)
+                throw new ArgumentNullException(nameof(node));
+            if (writer == null)
+                throw new ArgumentNullException(nameof(writer));
+
             // 1. Output directory nodes
             foreach (var directory in node.Directories)
             {

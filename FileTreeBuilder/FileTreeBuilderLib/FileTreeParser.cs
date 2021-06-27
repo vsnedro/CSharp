@@ -17,6 +17,9 @@ namespace FileTreeBuilderLib
 
         public FileTree Parse(IEnumerable<string> strings)
         {
+            if (strings == null)
+                throw new ArgumentNullException(nameof(strings));
+
             var tree = new FileTree();
 
             var lines = strings.ToArray();

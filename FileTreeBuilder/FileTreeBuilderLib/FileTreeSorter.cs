@@ -18,6 +18,9 @@ namespace FileTreeBuilderLib
 
         private void InternalSort(FileTree.DirectoryNode node)
         {
+            if (node == null)
+                throw new ArgumentNullException(nameof(node));
+
             // 1. Sort directory nodes
             node.Directories.Sort(_directoryComparer);
 
@@ -62,8 +65,8 @@ namespace FileTreeBuilderLib
                     }
                     else
                     {
-                        return x.Size == y.Size ? 
-                            string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase) : 
+                        return x.Size == y.Size ?
+                            string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase) :
                             y.Size.CompareTo(x.Size);
                     }
                 }
